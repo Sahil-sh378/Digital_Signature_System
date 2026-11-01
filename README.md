@@ -1,47 +1,42 @@
+<div align="center">
 
-# Digital Signature Demonstration System
+# 🔏 Digital Signature Demonstration System
 
-## Features
-- RSA-2048 / RSA-3072 public/private key generation
-- Password-encrypted private key stored locally
-- Public key, encrypted private key and demo certificate downloads
-- SHA-256 message hashing
-- RSA-PSS digital signing and verification
-- Message tampering demonstration
-- File signing and verification for PDF, TXT, DOCX, PNG and JPG (10 MB max)
-- Self-signed X.509 demo certificate
-- SQLite audit logs and activity counters
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-Web%20Framework-green.svg)](https://flask.palletsprojects.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Maintenance](https://img.shields.io/badge/Maintained%3D-Yes-brightgreen.svg)]()
 
-## Run on macOS
+*A secure, interactive web-based demonstration system for digital signatures, RSA-PSS cryptography, and message integrity verification.*
+
+</div>
+
+---
+
+## ✨ Key Features
+
+- 🔑 **RSA Key Generation:** Generates robust RSA-2048 / RSA-3072 public and private key pairs.
+- 🔒 **Encrypted Storage:** Password-encrypted private keys stored securely locally.
+- 📝 **Message Signing & Verification:** Sign text messages using SHA-256 and RSA-PSS with live verification.
+- 📂 **File Support:** Secure file signing and verification for PDF, TXT, DOCX, PNG, and JPG formats (up to 10 MB).
+- 🛡️ **Tamper Detection:** Live demonstration showing how modified messages or files instantly trigger an **INVALID** status.
+- 📜 **X.509 Certificates:** Self-signed demo certificate generation and inspection.
+- 📊 **Audit Logs:** SQLite-backed audit trails and activity tracking counters.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+Make sure you have **Python 3.8+** installed on your system.
+
+### Installation & Setup
+
+#### For macOS / Linux:
 ```bash
-cd Digital_Signature_System_Full
+git clone [https://github.com/Sahil-sh378/Digital_Signature_System.git](https://github.com/Sahil-sh378/Digital_Signature_System.git)
+cd Digital_Signature_System
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python3 app.py
-```
-Open http://127.0.0.1:5000
-
-## Windows
-```powershell
-py -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-py app.py
-```
-
-## Demonstration
-1. Generate keys with a passphrase of 8+ characters.
-2. Copy or download the public key. The private key is encrypted and never displayed.
-3. Enter a message and passphrase; click Sign Message.
-4. Verify the original message: it should be VALID.
-5. Change one character in the modified-message box and verify it with the same signature: it should be INVALID.
-6. Select a file, sign it, then verify the unchanged file.
-7. Modify the file and verify again: it should be INVALID.
-8. View the certificate and audit logs.
-
-## Security limitations
-Educational local demo only. The certificate is self-signed and is not trusted by a public CA. Audit logs are ordinary local SQLite records, not tamper-proof. Do not expose Flask debug server to the internet. Production use requires HTTPS, authentication, CSRF protection, rate limiting, hardened key storage, trusted certificate issuance and protected audit logging.
-
-# Digital_Signature_System
-bc5ef319cf6f927e269b58508c9ba96bf000c208
