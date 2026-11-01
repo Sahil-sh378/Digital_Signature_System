@@ -1,3 +1,4 @@
+
 # Digital Signature Demonstration System
 
 ## Features
@@ -41,3 +42,6 @@ py app.py
 
 ## Security limitations
 Educational local demo only. The certificate is self-signed and is not trusted by a public CA. Audit logs are ordinary local SQLite records, not tamper-proof. Do not expose Flask debug server to the internet. Production use requires HTTPS, authentication, CSRF protection, rate limiting, hardened key storage, trusted certificate issuance and protected audit logging.
+
+# Digital_Signature_System
+bc5ef319cf6f927e269b58508c9ba96bf000c208
