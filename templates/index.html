@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital Signature Demonstration</title><link rel="stylesheet" href="/static/style.css"></head>
+<body>
+<header><div class="brand"><span>🔐</span><div><b>SecureSign</b><small>Digital Signature Demonstration System</small></div></div><span class="live">● Local Demo</span></header>
+<main>
+<section class="hero"><div><small>CYBERSECURITY PROJECT</small><h1>Digital Signature <em>Demonstration</em></h1><p>Generate keys, sign messages and files, verify signatures, and detect tampering.</p></div><aside><b>RSA-2048 / 3072</b><b>SHA-256</b><b>RSA-PSS</b></aside></section>
+<nav><a href="#keys">Keys</a><a href="#message">Message</a><a href="#files">Files</a><a href="#certificate">Certificate</a><a href="#audit">Audit</a></nav>
+
+<section class="card" id="keys"><h2><i>01</i> Generate RSA Key Pair</h2><p class="muted">The private key creates signatures. The public key verifies them.</p>
+<div class="row"><label>Key size<select id="keySize"><option value="2048">RSA-2048</option><option value="3072">RSA-3072</option></select></label><label class="grow">Private-key passphrase<input id="keyPass" type="password" placeholder="At least 8 characters"></label><button id="generate">Generate New Keys</button></div>
+<div id="keyStatus" class="notice">No keys generated in this session.</div>
+<div class="grid"><div class="info"><h3>Key information</h3><p>Algorithm <b>RSA</b></p><p>Key size <b id="sizeValue">—</b></p><p>Public exponent <b>65537</b></p><p>Private key <b>Encrypted locally</b></p></div><div><label>Public key <button class="mini" data-copy="publicKey">Copy</button><textarea id="publicKey" readonly placeholder="Public key appears here..."></textarea></label></div></div>
+<div class="links"><a href="/download/public">Download public key</a><a href="/download/private">Download encrypted private key</a><a href="/download/certificate">Download demo certificate</a></div>
+<p class="finger">Public-key fingerprint (SHA-256): <code id="fingerprint">Not generated</code></p></section>
+
+<section class="card" id="message"><h2><i>02</i> Sign and Verify Message</h2>
+<label>Message to sign<textarea id="messageText" placeholder="Example: This document is approved for the cybersecurity project."></textarea></label>
+<div class="row"><label class="grow">Private-key passphrase<input id="signPass" type="password" placeholder="Enter key passphrase"></label><button id="sign">Generate Signature</button><button class="light" id="clear">Clear</button></div>
+<div class="grid"><label>SHA-256 hash <button class="mini" data-copy="hash">Copy</button><textarea id="hash" readonly placeholder="Hash appears here..."></textarea></label><label>Digital signature (Base64) <button class="mini" data-copy="signature">Copy</button><textarea id="signature" placeholder="Signature appears here..."></textarea></label></div>
+<button class="wide dark" id="verify">Verify Original Message</button><div id="verifyResult" class="notice">Not verified yet.</div>
+<div class="tamper"><h3>⚠ Tampering demonstration</h3><p>Keep the original signature. Change the message below and verify it again.</p><label>Modified message<textarea id="modified" placeholder="Edit the original message here..."></textarea></label><button class="red" id="tamperVerify">Verify Modified Message</button><div id="tamperResult" class="notice">Tampering test not run.</div></div>
+</section>
+
+<section class="card" id="files"><h2><i>03</i> File Signing and Verification</h2><p class="muted">Sign the file's exact bytes. Even a small change should make verification fail.</p><div class="grid">
+<div class="sub"><h3>Sign a file</h3><label>Choose file<input type="file" id="fileSign" accept=".pdf,.txt,.docx,.png,.jpg,.jpeg"></label><label>Passphrase<input id="filePass" type="password"></label><button id="signFile">Sign File</button><label>File SHA-256<textarea id="fileHash" readonly></textarea></label><label>File signature<textarea id="fileSig"></textarea></label><button class="light" id="downloadSig">Download .sig file</button></div>
+<div class="sub"><h3>Verify a file</h3><label>Choose original or modified file<input type="file" id="fileVerify" accept=".pdf,.txt,.docx,.png,.jpg,.jpeg"></label><label>Base64 signature<textarea id="fileSigVerify" placeholder="Paste signature here"></textarea></label><label>Public key (optional)<textarea id="filePublic" placeholder="Blank uses the generated public key"></textarea></label><button id="verifyFile">Verify File</button><div id="fileResult" class="notice">Choose a file to verify.</div></div>
+</div><p class="muted">Supported: PDF, TXT, DOCX, PNG, JPG. Maximum 10 MB. This creates a detached signature; it does not visually embed a signature in the PDF.</p></section>
+
+<section class="card" id="certificate"><h2><i>04</i> Digital Certificate</h2><p class="muted">Inspect the self-signed X.509 certificate made for this local demo.</p><button class="light" id="loadCert">Load Certificate Details</button><div id="certInfo" class="notice">Generate keys first.</div></section>
+<section class="card" id="audit"><h2><i>05</i> Security Audit Logs</h2><div class="stats"><div>Total events <b id="total">0</b></div><div>Signed <b id="signed">0</b></div><div>Valid <b id="valid">0</b></div><div>Invalid <b id="invalid">0</b></div></div><button class="light" id="refresh">Refresh Logs</button><div class="tablewrap"><table><thead><tr><th>Time</th><th>Event</th><th>Status</th><th>Details</th></tr></thead><tbody id="logs"><tr><td colspan="4">No events.</td></tr></tbody></table></div></section>
+<section class="bottom"><h2>How the cryptography works</h2><p>Message or file → SHA-256 hash → private-key RSA-PSS signature → public-key verification. Verification checks that the signature belongs to the supplied content and public key.</p></section>
+</main><footer>Digital Signature Demonstration System · Educational local project</footer>
+<script src="/static/script.js"></script></body></html>
