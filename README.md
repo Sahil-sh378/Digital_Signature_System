@@ -40,3 +40,12 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python3 app.py
+
+#### For Windows:
+
+git clone [https://github.com/Sahil-sh378/Digital_Signature_System.git](https://github.com/Sahil-sh378/Digital_Signature_System.git)
+cd Digital_Signature_System
+py -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+py app.py
