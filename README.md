@@ -41,7 +41,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 python3 app.py
 
-#### For Windows:
+For Windows:
 
 git clone [https://github.com/Sahil-sh378/Digital_Signature_System.git](https://github.com/Sahil-sh378/Digital_Signature_System.git)
 cd Digital_Signature_System
